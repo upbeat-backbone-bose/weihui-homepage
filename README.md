@@ -1,5 +1,7 @@
 # 微晖医疗官网项目
 
+[![CI](https://github.com/upbeat-backbone-bose/weihui-homepage/actions/workflows/ci.yml/badge.svg)](https://github.com/upbeat-backbone-bose/weihui-homepage/actions/workflows/ci.yml)
+
 本项目是一个基于 React + TypeScript + Webpack + Tailwind CSS 的企业官网，聚焦医疗行业数字化管理场景，包含首页、产品中心、解决方案、关于我们等页面。
 
 ## 功能概览
