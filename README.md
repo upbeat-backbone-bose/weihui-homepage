@@ -146,12 +146,12 @@ pnpm run audit
 
 ```bash
 npm install --package-lock-only --registry=https://mirrors.cloud.tencent.com/npm
-npm audit --audit-level=moderate
+npm audit --audit-level=high
 ```
 
 ### CI 自动审计
 
-GitHub Actions CI 会在每次 push 和 PR 时自动运行安全审计（moderate 级别）。
+GitHub Actions CI 会在每次 push 和 PR 时自动运行安全审计（high 级别）。
 
 ## 开发注意事项
 
