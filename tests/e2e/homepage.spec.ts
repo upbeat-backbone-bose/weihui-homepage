@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Homepage UI Tests', () => {
+test.describe('首页测试', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');

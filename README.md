@@ -62,7 +62,7 @@ pnpm run format    # Prettier 格式化代码
 ### 5. 生产构建
 
 ```bash
-pnpm run build
+pnnpm run build
 ```
 
 构建产物输出到 `dist/`。
@@ -86,8 +86,13 @@ pnpm run test            # typecheck + lint + test:e2e
 
 ## 项目结构
 
-```
+```text
 weihui-homepage/
+├── .github/
+│   └── workflows/              # GitHub Actions
+│       ├── ci.yml             # CI 工作流
+│       └── release-build.yml   # 发布构建
+├── .husky/                     # Git hooks
 ├── assets/                   # 静态资源（图片、SVG 等）
 ├── public/                   # 公共静态资源
 ├── src/
@@ -99,15 +104,25 @@ weihui-homepage/
 │   ├── types/                # TypeScript 类型定义
 │   ├── App.tsx               # 路由与页面懒加载
 │   └── index.tsx             # 应用入口
-├── tests/                    # E2E 测试（Playwright）
+├── tests/e2e/               # E2E 测试（Playwright）
+│   ├── basic.spec.ts
+│   ├── homepage.spec.ts
+│   └── navigation.spec.ts
 ├── index.html                # HTML 模板
+├── playwright.config.ts       # Playwright 配置
 ├── webpack.config.js         # Webpack 配置
 ├── tailwind.config.js        # Tailwind 主题配置
-├── playwright.config.ts      # Playwright 配置
 ├── .eslintrc.js              # ESLint 配置
 ├── .prettierrc               # Prettier 配置
 └── DEPLOY.md                 # 部署说明
 ```
+
+## Git Hooks
+
+项目使用 Husky + lint-staged 实现 pre-commit 检查：
+
+- 提交前自动运行 ESLint 和 Prettier
+- 确保代码风格一致
 
 ## 部署
 
@@ -116,6 +131,27 @@ weihui-homepage/
 - Nginx 静态站点部署
 - Docker 镜像部署
 - Vercel/Netlify/对象存储静态托管
+
+## 安全审计
+
+### 本地运行
+
+项目使用腾讯云 npm 镜像进行依赖安装，使用 moderate 级别进行安全审计：
+
+```bash
+pnpm run audit
+```
+
+或手动执行：
+
+```bash
+npm install --package-lock-only --registry=https://mirrors.cloud.tencent.com/npm
+npm audit --audit-level=moderate
+```
+
+### CI 自动审计
+
+GitHub Actions CI 会在每次 push 和 PR 时自动运行安全审计（moderate 级别）。
 
 ## 开发注意事项
 

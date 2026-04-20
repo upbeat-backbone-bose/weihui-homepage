@@ -7,9 +7,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 function getSupabaseUrl(): string {
-  const config = (window as unknown as { MEOO_CONFIG?: { meoo_app_access_url?: string } })
-    .MEOO_CONFIG;
-  return `${config?.meoo_app_access_url || location.origin}/sb-api`;
+  return `${(window as { MEOO_CONFIG?: { meoo_app_access_url?: string } }).MEOO_CONFIG?.meoo_app_access_url || location.origin}/sb-api`;
 }
 
 export const supabaseUrl = getSupabaseUrl();

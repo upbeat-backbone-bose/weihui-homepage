@@ -109,7 +109,8 @@ vendor/
 outputs/
 .microcompact/
 
-# 测试
+# Playwright
+.playwright/
 test-results/
 playwright-report/
 playwright/test-results/

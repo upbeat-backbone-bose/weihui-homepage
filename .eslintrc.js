@@ -2,10 +2,15 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2022,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+    },
+  },
+  settings: {
+    react: {
+      version: 'detect',
     },
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
@@ -16,15 +21,15 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   rules: {
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     'react/prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-explicit-any': 'warn',
+  },
+  env: {
+    browser: true,
+    es2022: true,
+    node: true,
   },
 };
