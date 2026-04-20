@@ -26,8 +26,7 @@ test.describe('基础功能测试', () => {
     const menuButton = page.locator('button[aria-label="Toggle menu"]');
     await expect(menuButton).toBeVisible();
     await menuButton.click();
-    await page.waitForTimeout(500);
-    const mobileMenu = page.locator('.lg\\:hidden nav >> text=首页');
+    await expect(page.locator('.lg\\:hidden nav >> text=首页')).toBeVisible({ timeout: 5000 });
     await expect(mobileMenu).toBeVisible();
   });
 
