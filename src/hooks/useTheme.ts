@@ -34,14 +34,24 @@ export function useTheme() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
+    // 允许的 origin 列表（空数组表示仅允许同源）
+    const config = window as typeof window & { MEOO_CONFIG?: { allowedThemeOrigins?: string[] } };
+    const allowedOrigins = config.MEOO_CONFIG?.allowedThemeOrigins || [];
+
     // 监听来自父窗口的主题切换消息
     const handleMessage = (event: MessageEvent) => {
-      // 安全性检查：可根据需要验证 event.origin
+      // Origin 验证：仅允许同源或白名单中的 origin
+      if (allowedOrigins.length > 0 && !allowedOrigins.includes(event.origin)) {
+        return;
+      }
+      if (allowedOrigins.length === 0 && event.origin !== window.location.origin) {
+        return;
+      }
+
       if (event.data && typeof event.data.theme === 'string') {
         const newTheme = event.data.theme as Theme;
         if (newTheme === 'light' || newTheme === 'dark') {
           setTheme(newTheme);
-          // 应用主题到DOM
           applyTheme(newTheme);
         }
       }
