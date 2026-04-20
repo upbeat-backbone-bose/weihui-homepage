@@ -52,74 +52,68 @@ pnpm run dev
 pnpm run typecheck
 ```
 
-### 4. 代码格式化
+### 4. 代码检查与格式化
 
 ```bash
-pnpm run format
+pnpm run lint      # ESLint 检查并自动修复
+pnpm run format    # Prettier 格式化代码
 ```
 
-### 5. 代码检查
+### 5. 生产构建
 
 ```bash
-pnpm run lint
-```
-
-### 6. 生产构建
-
-```bash
-pnpm run build
+pnnpm run build
 ```
 
 构建产物输出到 `dist/`。
 
 ## 测试
 
-### E2E 测试
-
-使用 Playwright 进行端到端测试。
+### E2E 测试（Playwright）
 
 ```bash
-pnpm run test:e2e
+pnpm run test:e2e        # 运行所有 E2E 测试
+pnpm run test:e2e:ui     # 交互模式运行测试
 ```
 
-### 运行所有检查
+测试覆盖：路由导航、页面加载、UI 组件、无控制台错误。
+
+### 运行完整检查
 
 ```bash
-pnpm run test
-```
-
-### 交互式 UI 模式
-
-```bash
-pnpm run test:e2e:ui
+pnpm run test            # typecheck + lint + test:e2e
 ```
 
 ## 项目结构
 
 ```text
-website/
+weihui-homepage/
 ├── .github/
 │   └── workflows/              # GitHub Actions
 │       ├── ci.yml             # CI 工作流
 │       └── release-build.yml   # 发布构建
 ├── .husky/                     # Git hooks
-├── assets/                     # 静态资源
+├── assets/                   # 静态资源（图片、SVG 等）
+├── public/                   # 公共静态资源
 ├── src/
-│   ├── components/             # 通用组件（如 Layout）
-│   ├── hooks/                 # 自定义 Hooks
-│   ├── pages/                 # 页面组件（Home/Products/Solutions/About）
-│   ├── styles/                # 全局样式与 Tailwind 入口
-│   ├── supabase/              # Supabase 客户端与类型
-│   ├── App.tsx                # 路由与页面懒加载
-│   └── index.tsx              # 应用入口
-├── tests/e2e/                 # E2E 测试
+│   ├── components/           # 通用组件（Layout、Seo）
+│   ├── hooks/                # 自定义 Hooks（useTheme）
+│   ├── pages/                # 页面组件（Home/Products/Solutions/About）
+│   ├── styles/               # 全局样式与 Tailwind 入口
+│   ├── supabase/             # Supabase 客户端与类型
+│   ├── types/                # TypeScript 类型定义
+│   ├── App.tsx               # 路由与页面懒加载
+│   └── index.tsx             # 应用入口
+├── tests/e2e/               # E2E 测试（Playwright）
 │   ├── basic.spec.ts
 │   ├── homepage.spec.ts
 │   └── navigation.spec.ts
-├── index.html                 # HTML 模板
+├── index.html                # HTML 模板
 ├── playwright.config.ts       # Playwright 配置
-├── webpack.config.js          # Webpack 配置
+├── webpack.config.js         # Webpack 配置
 ├── tailwind.config.js        # Tailwind 主题配置
+├── .eslintrc.js              # ESLint 配置
+├── .prettierrc               # Prettier 配置
 └── DEPLOY.md                 # 部署说明
 ```
 

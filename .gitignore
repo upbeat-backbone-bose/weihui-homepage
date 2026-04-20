@@ -113,3 +113,4 @@ outputs/
 .playwright/
 test-results/
 playwright-report/
+playwright/test-results/
