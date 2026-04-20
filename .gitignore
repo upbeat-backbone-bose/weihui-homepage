@@ -114,3 +114,4 @@ outputs/
 test-results/
 playwright-report/
 playwright/test-results/
+_pr_description.md
